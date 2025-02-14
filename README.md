@@ -8,11 +8,11 @@
 
 [https://github.com/ollama/ollama/blob/main/docs/linux.md](https://github.com/ollama/ollama/blob/main/docs/linux.md)
 
-## 第一步：下载所需要的资源
+## 第一步：准备所需要的资源
 
-1. 下载deepseeksetup文件夹，内含文件:
+1. 下载文件，作者在后续的步骤中将它们放在了deepseeksetup的文件夹下面:
     
-    [ollama-linux-amd64.tgz](https://github.com/ollama/ollama/releases/tag/v0.5.10)
+    [ollama-linux-amd64.tgz](https://github.com/ollama/ollama/releases) 下载文件名对应文件
     
     gguf模型   [deepseek from huggingface](https://huggingface.co/collections/unsloth/deepseek-r1-all-versions-678e1c48f5d2fce87892ace5)
     
@@ -20,7 +20,7 @@
     
     [Modelfile.txt](Modelfile.txt)
     
-2. 使用edh账户登录服务器
+2. 登录服务器
 3. 将deepseeksetup文件夹转移到服务器上
 
 ## 第二步：安装ollama
@@ -45,7 +45,7 @@ ollama serve
 
 应该会得到这样的窗口
 
-![image.png](image.png)
+![image.png](f26f1706-55f7-4a09-b367-6f10981d7dba.png)
 
 4.保持刚刚运行ollama的服务窗口，新建虚拟命令窗口确认ollama服务运行
 
@@ -53,24 +53,24 @@ ollama serve
 ollama -v
 ```
 
-![image.png](image%201.png)
+![image.png](image.png)
 
 出现版本号说明ollama安装成功
 
 ## 第三步：创建模型
 
-1. 更改Modelfile.txt中的参数
+1. 更改Modelfile.txt中的参数（参数详细解析可见[官方文档](https://github.com/ollama/ollama/blob/main/docs/modelfile.md)，此处只解释安装deepseek时需要修改的参数）
     
-    FROM开头的路径，指向你存放的.gguf文件的位置
+    FROM： 指向你存放的.gguf文件的路径
     
 
 ```bash
 FROM /Path/to/DeepSeek-R1-Distill-Qwen-1.5B-Q8_0.gguf
 ```
 
-![image.png](image%202.png)
+下面给出的模版仅适用于deepseekr1
 
-附Modelfile.txt  模板
+Modelfile.txt  模板
 
 ```bash
 FROM /path/to/DeepSeek-R1-Distill-Qwen-1.5B-Q8_0.gguf
@@ -138,7 +138,7 @@ SOFTWARE.
 
 如要部署别的模型请根据[https://ollama.com/library/deepseek-r1](https://ollama.com/library/deepseek-r1) 中的相关参数进行更改
 
-![image.png](image%203.png)
+![image.png](image%201.png)
 
 1. 构建模型
 
@@ -154,7 +154,7 @@ ollama create deepseek-r1:1.5b -f /path/to/Modelfile.txt
 ollama list
 ```
 
-![image.png](image%204.png)
+![image.png](image%202.png)
 
 出现模型名字即为成功
 
@@ -165,7 +165,9 @@ ollama list
 ollama run deepseek-r1:1.5b
 ```
 
-## 网络API相关
+## 网络API相关（还没成功，有待后续实现）
+
+参考[官方文档1](https://github.com/ollama/ollama/blob/main/docs/linux.md#adding-ollama-as-a-startup-service-recommended)，[官方文档2](https://github.com/ollama/ollama/blob/main/docs/faq.md#setting-environment-variables-on-linux)
 
 **添加 Ollama 作为初创服务（推荐）**
 
